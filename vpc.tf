@@ -147,14 +147,14 @@ resource "aws_route_table_association" "public" {
   route_table_id = aws_route_table.public.id
 }
 
-# public Route table association
+# private Route table association
 resource "aws_route_table_association" "private" {
   count = length(var.private_subnet_cidr)
   subnet_id      = aws_subnet.private_subnet[count.index].id
   route_table_id = aws_route_table.private.id
 }
 
-# public Route table association
+# database Route table association
 resource "aws_route_table_association" "database" {
   count = length(var.database_subnet_cidr)
   subnet_id      = aws_subnet.database_subnet[count.index].id
